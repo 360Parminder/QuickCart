@@ -10,7 +10,7 @@ const App = () => {
   return (
    
  <Routes>
-      {/* <Route path="/" element={<Register />} /> */}
+      <Route path="/Register" element={<Register />} />
       <Route path="/" element={<Landing/>} />
       <Route path="/razorpay" element={<Razorpay />} />
       <Route path="/ProductPage" element={<ProductPage />} />

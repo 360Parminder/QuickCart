@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Landing = () => {
+    const navigate = useNavigate()
         const [name, setName] = useState("");
         const [phone, setPhone] = useState("");
         const [password, setPassword] = useState("");
@@ -66,6 +68,9 @@ const Landing = () => {
                     )
                 }
             </form>
+            <button onClick={()=>navigate('/Register')}>
+                Not Registered
+            </button>
         </div>
     );
 }
