@@ -1,43 +1,16 @@
-import { useState } from "react";
-import axios from "axios";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Auth } from "../Context/UserAuth";
 const Landing = () => {
-    const navigate = useNavigate()
-        const [name, setName] = useState("");
+    const navigate = useNavigate();
+    const { login,isLoading } = useContext(Auth);
         const [phone, setPhone] = useState("");
         const [password, setPassword] = useState("");
-        const [isLoading, setIsLoading] = useState(false);
 
         const handleSubmit = async (e) => {
             e.preventDefault();
-            if (name === "" || phone === "" || password === "") {
-                alert("Please fill all the fields");
-                return;
-            }
-            try {
-                setIsLoading(true);
-                const response = await axios.post("", {
-                    "username": name,
-                    "role": "admin",
-                    "password": password,
-                    "mobile": parseInt(phone)
-                }, {
-                    withCredentials: true
-                })
-                if (response.status === 200) {
-                    alert("Admin Registered Successfully");
-                    setIsLoading(false);
-                }
-                else {
-                    alert(response.data.message);
-                    setIsLoading(false);
-                }
-    
-            } catch (error) {
-                console.log(error);
-                alert(error.response.data.message);
-                setIsLoading(false);
-            }
+             await login(phone, password);
+           
         };
     return (
         <div className=" flex justify-center items-center w-screen h-screen bg-[#000]">

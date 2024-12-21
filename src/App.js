@@ -1,20 +1,16 @@
-import Register from "./Pages/Register";
 import './App.css';
-import { Route, Routes } from "react-router-dom";
-import Razorpay from "./Pages/RazorPay";
+import { AuthProvider } from "./Context/UserAuth";
+import { UserDataProvider } from './Context/UserData';
 
-import ProductPage from "./Pages/ProductPage";
-import Landing from "./Pages/Landing";
+import AppRoutes from "./Routes/AppRoutes";
 
 const App = () => {
   return (
-   
- <Routes>
-      <Route path="/Register" element={<Register />} />
-      <Route path="/" element={<Landing/>} />
-      <Route path="/razorpay" element={<Razorpay />} />
-      <Route path="/ProductPage" element={<ProductPage />} />
-    </Routes>
+    <AuthProvider>
+      <UserDataProvider>
+        <AppRoutes />
+      </UserDataProvider>
+    </AuthProvider>
     
   
   );
