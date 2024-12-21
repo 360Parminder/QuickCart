@@ -1,25 +1,42 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { User } from "../Services/User";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const Auth = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [token, setToken] = useState("");
     
+    useEffect(() => {
+        const token = Cookies.get("Authtoken");
+        if (token) {
+            setIsAuthenticated(true);
+            setToken(token);
+        }
+    }, []);
     const login = async (phone,password) => {
         setIsLoading(true);
         const response = await User.loginShop(phone, password );
         if (response.success) {
             setIsAuthenticated(true);
-            
+            navigate('/Dashboard');
+            Cookies.set("Authtoken", response.token);
         } else {
             console.log(response.message);
         }
         setIsLoading(false);
     }
+    const logout = async() => {
+        setIsAuthenticated(false);
+        navigate('/');
+        await Cookies.remove("Authtoken");
+    }
     return (
-        <Auth.Provider value={{isAuthenticated, isLoading, login}}>
+        <Auth.Provider value={{isAuthenticated, isLoading, login, logout}}>
             {children}
         </Auth.Provider>
     );

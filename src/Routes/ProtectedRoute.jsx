@@ -18,6 +18,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     // Cookies.remove("Authtoken");
     // return <Navigate to="/unauthorized" />;
     alert("Unauthorized");
+    return <Navigate to="/Dashboard" />;
   }
 
   return children;
