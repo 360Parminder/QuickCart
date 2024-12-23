@@ -96,6 +96,11 @@ const ProductPage = () => {
             <img src={product.image} alt={product.name} style={imgStyle} />
             <h3>{product.name}</h3>
             <p>{product.price}</p>
+           <div>
+           <button className='rounded-md px-1 bg-slate-50 text-black'>-</button>
+            <span>0</span>
+           <button>+</button>
+           </div>
           </div>
         ))}
       </div>

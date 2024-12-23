@@ -6,6 +6,7 @@ import Home from "../Pages/Home";
 import RegisterEmployee from "../Pages/RegisterEmployee";
 import ProtectedRoute from "./ProtectedRoute";
 import AddDeleteProducts from "../Pages/AddDeleteProducts";
+import ProductPage from "../Pages/ProductPage";
 
 const AppRoutes = () => {
     return (
@@ -28,6 +29,8 @@ const AppRoutes = () => {
              <RegisterEmployee />
           </ProtectedRoute>
           } /> 
+          <Route path="Products" element={<ProductPage/>} />
+          <Route path="*" element={<h1>Not Found</h1>} />
       </Route>
       {/* <Route path="/razorpay" element={<Razorpay />} /> */}
       {/* <Route path="/ProductPage" element={<ProductPage />} /> */}

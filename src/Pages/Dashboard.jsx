@@ -26,7 +26,7 @@ const Dashboard = () => {
             <Link to="update" className="hover:text-gray-300">Update</Link>
           </li>
           <li>
-            <Link to="generate-bill" className="hover:text-gray-300">Generate Bill</Link>
+            <Link to="Products" className="hover:text-gray-300">Generate Bill</Link>
           </li>
           <li>
             <Link to="register-employee" className="hover:text-gray-300">Register Employee</Link>

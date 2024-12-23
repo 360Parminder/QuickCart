@@ -24,10 +24,10 @@ const RegisterEmployee = () => {
 
     return (
         <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-lg bg-gray-100">
-            <h2 className="text-center text-2xl font-bold mb-6">Register Employee</h2>
+            <h2 className="text-center text-2xl font-bold mb-6 text-gray-900">Register Employee</h2>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Name:</label>
+                    <label className="block text-sm font-bold mb-2 text-gray-900">Name:</label>
                     <input
                         type="text"
                         name="name"
@@ -38,7 +38,7 @@ const RegisterEmployee = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Role:</label>
+                    <label className="block text-sm font-bold mb-2 text-gray-900">Role:</label>
                     <input
                         type="text"
                         name="role"
@@ -49,7 +49,7 @@ const RegisterEmployee = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Password (Mobile Number):</label>
+                    <label className="block text-sm font-bold mb-2 text-gray-900">Password (Mobile Number):</label>
                     <input
                         type="password"
                         name="password"
@@ -60,7 +60,7 @@ const RegisterEmployee = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Mobile Number:</label>
+                    <label className="block text-sm font-bold mb-2 text-gray-900">Mobile Number:</label>
                     <input
                         type="text"
                         name="mobile"
