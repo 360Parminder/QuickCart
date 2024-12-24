@@ -4,8 +4,10 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      scrollbar: ['hidden'], // Add this for hiding scrollbars
+    },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')],
 }
 

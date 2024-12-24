@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Product } from '../Services/Product';
 
-
-
 const AddDeleteProducts = () => {
     const [product, setProduct] = useState({
         name: '',
         price: '',
         quantity: '',
-        unit: '',
+        unit: '', // Unit will be selected from dropdown
         shopId: '',
-        image: null
+        image: null,
+        quantityInStock: ''
     });
+    const [previewImage, setPreviewImage] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,22 +22,34 @@ const AddDeleteProducts = () => {
     };
 
     const handleFileChange = (e) => {
+        const file = e.target.files[0];
         setProduct({
             ...product,
-            image: e.target.files[0]
+            image: file
         });
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviewImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-       const response = await Product.addProduct(product);
+        const formData = new FormData();
+        formData.append('name', product.name);
+        formData.append('price', product.price);
+        formData.append('quantity', product.quantity);
+        formData.append('unit', product.unit);
+        formData.append('shopId', product.shopId);
+        formData.append('quantityInStock', product.quantityInStock);
+        formData.append('image', product.image);
+
+        const response = await Product.addProduct(formData);
         console.log(response);
-        //  if(response.success) {
-        //     alert(response.message);
-        //       console.log(response.message);
-        //  } else {
-        //       console.log(response.message);
-        //     }
+        // Handle response logic
     };
 
     return (
@@ -46,71 +58,97 @@ const AddDeleteProducts = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="block text-gray-700">Name:</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        value={product.name} 
-                        onChange={handleChange} 
-                        required 
+                    <input
+                        type="text"
+                        name="name"
+                        value={product.name}
+                        onChange={handleChange}
+                        required
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700">Price:</label>
-                    <input 
-                        type="number" 
-                        name="price" 
-                        value={product.price} 
-                        onChange={handleChange} 
-                        required 
+                    <input
+                        type="number"
+                        name="price"
+                        value={product.price}
+                        onChange={handleChange}
+                        required
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700">Quantity:</label>
-                    <input 
-                        type="number" 
-                        name="quantity" 
-                        value={product.quantity} 
-                        onChange={handleChange} 
-                        required 
+                    <input
+                        type="number"
+                        name="quantity"
+                        value={product.quantity}
+                        onChange={handleChange}
+                        required
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700">Unit:</label>
-                    <input 
-                        type="text" 
-                        name="unit" 
-                        value={product.unit} 
-                        onChange={handleChange} 
-                        required 
+                    <select
+                        name="unit"
+                        value={product.unit}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-3 py-2 border rounded-lg"
+                    >
+                        <option value="" disabled>Select unit</option>
+                        <option value="kg">Kilogram (kg)</option>
+                        <option value="g">Gram (g)</option>
+                        <option value="ltr">Liter (ltr)</option>
+                        <option value="ml">Milliliter (ml)</option>
+                        <option value="pcs">Pieces (pcs)</option>
+                    </select>
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Shop ID:</label>
+                    <input
+                        type="text"
+                        name="shopId"
+                        value={product.shopId}
+                        onChange={handleChange}
+                        required
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Shop ID:</label>
-                    <input 
-                        type="text" 
-                        name="shopId" 
-                        value={product.shopId} 
-                        onChange={handleChange} 
-                        required 
+                    <label className="block text-gray-700">Quantity in Stock:</label>
+                    <input
+                        type="number"
+                        name="quantityInStock"
+                        value={product.quantityInStock}
+                        onChange={handleChange}
+                        required
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700">Image:</label>
-                    <input 
-                        type="file" 
-                        name="image" 
-                        onChange={handleFileChange} 
-                        required 
+                    <input
+                        type="file"
+                        name="image"
+                        onChange={handleFileChange}
+                        required
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
-                <button 
-                    type="submit" 
+                {previewImage && (
+                    <div className="mb-4">
+                        <img
+                            src={previewImage}
+                            alt="Product Preview"
+                            className="w-full h-40 object-cover rounded-lg"
+                        />
+                    </div>
+                )}
+                <button
+                    type="submit"
                     className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
                 >
                     Add Product
