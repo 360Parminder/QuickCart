@@ -1,9 +1,11 @@
 import axios from "axios"
+import axiosInstance from "./GlobalPath";
+import GlobalPath from "./GlobalPath";
 
 export const User={
     RegisterShop: async (data) => {
         try {
-            const response = await axios.post("http://localhost:9000/api/v1/registerShop", {
+            const response = await GlobalPath.post("/api/v1/registerShop", {
                 ...data
             });
             if (response.status === 200 || response.status === 400) {
@@ -28,10 +30,8 @@ export const User={
         }
     },
     loginShop: async (phone,password) => {
-        console.log(phone,password);
-        
         try {
-            const response = await axios.post("http://localhost:9000/api/v1/login", {
+            const response = await GlobalPath.post("/api/v1/login", {
                 mobile:phone,
                 password
             });

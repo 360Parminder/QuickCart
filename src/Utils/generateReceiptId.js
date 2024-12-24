@@ -9,9 +9,7 @@ export const generateReceiptId = () => {
 };
 
 // Function to make an order ID by sending a request to Razorpay Orders API
-export const makeOrderID = async (amount) => {
-  const receiptId = generateReceiptId();
-
+export const makeOrderID = async (amount,receiptId) => {
   try {
     const response = await axios.post(
       'https://api.razorpay.com/v1/orders',
@@ -22,8 +20,8 @@ export const makeOrderID = async (amount) => {
       },
       {
         auth: {
-          username: '', // Replace with your Razorpay Test Key
-          password: '', // Replace with your Razorpay Test Secret
+          username: process.env.REACT_APP_RAZORPAY_KEY, // Replace with your Razorpay Test Key
+          password: process.env.REACT_APP_RAZOROAY_SECRET, // Replace with your Razorpay Test Secret
         },
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +30,7 @@ export const makeOrderID = async (amount) => {
     );
 
     // Return the receipt ID and the order ID returned by the Razorpay API
-    return { receiptId, orderId: response.data.id };
+    return {orderId: response.data.id };
   } catch (error) {
     console.error('Error creating order:', error.response ? error.response.data : error.message);
     return { error: "Failed to create the order." };

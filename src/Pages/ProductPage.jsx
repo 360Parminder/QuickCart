@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Product } from "../Services/Product";
+import { useNavigate } from "react-router-dom";
+import { generateReceiptId } from "../Utils/generateReceiptId";
+import { handlePayment } from "../Utils/razorpay";
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [orderId, setOrderId] = useState(null);
+
+
+ 
 
   // Fetch products on mount
   useEffect(() => {
@@ -16,18 +24,42 @@ const ProductPage = () => {
       }
     };
     fetchProducts();
+
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
-  // Load cart from localStorage
+  // Load cart and orderId from localStorage
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(savedCart);
+
+    // Set existing or generate a new orderId
+    const savedOrderId = localStorage.getItem("orderId");
+    if (savedCart.length > 0 && savedOrderId) {
+      setOrderId(savedOrderId);
+    } else {
+      const newOrderId = generateReceiptId();
+      setOrderId(newOrderId);
+      localStorage.setItem("orderId", newOrderId);
+    }
   }, []);
 
-  // Save cart to localStorage whenever it updates
+  // Save cart and orderId to localStorage whenever cart updates
   const updateCart = (updatedCart) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    if (updatedCart.length === 0) {
+      const newOrderId = generateReceiptId();
+      setOrderId(newOrderId);
+      localStorage.setItem("orderId", newOrderId);
+    }
   };
 
   const handleAddToCart = (product) => {
@@ -55,6 +87,7 @@ const ProductPage = () => {
   const clearCart = () => {
     setCart([]); // Clear cart in state
     localStorage.removeItem("cart"); // Remove cart from localStorage
+    localStorage.removeItem("orderId"); // Remove orderId from localStorage
   };
 
   const formatPrice = (price) =>
@@ -63,7 +96,7 @@ const ProductPage = () => {
   return (
     <div className="bg-black text-white h-full flex flex-row justify-between gap-4">
       {/* Products Section */}
-      <div className={`${cart.length>0?"grid-cols-1 w-4/6":"grid-cols-2 w-full"} grid grid-cols-1  gap-6 h-full overflow-scroll scrollbar-hidden`}>
+      <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" : "grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-scroll scrollbar-hidden`}>
         {products.map((product, index) => (
           <div
             key={index}
@@ -97,7 +130,7 @@ const ProductPage = () => {
           <div className="mb-4 flex justify-between px-4">
             <div>
               <p>Order Id:</p>
-              <p>{Math.floor(Math.random() * 1000000)}</p>
+              <p>{orderId}</p>
             </div>
             <p>Customer: Walk-in</p>
             <p>{new Date().toLocaleDateString()}</p>
@@ -163,7 +196,7 @@ const ProductPage = () => {
               >
                 Cancel
               </button>
-              <button className="rounded-md px-4 py-2 bg-green-500 text-white hover:bg-green-600 transition duration-300">
+              <button onClick={() => handlePayment(100,orderId,8779112732,"parminder")} className="rounded-md px-4 py-2 bg-green-500 text-white hover:bg-green-600 transition duration-300">
                 Pay
               </button>
             </div>

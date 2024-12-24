@@ -7,6 +7,7 @@ import RegisterEmployee from "../Pages/RegisterEmployee";
 import ProtectedRoute from "./ProtectedRoute";
 import AddDeleteProducts from "../Pages/AddDeleteProducts";
 import ProductPage from "../Pages/ProductPage";
+import Razorpay from "../Pages/RazorPay";
 
 const AppRoutes = () => {
     return (
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           } /> 
           <Route path="Products" element={<ProductPage/>} />
           <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="payment" element={<Razorpay/>} />
       </Route>
       {/* <Route path="/razorpay" element={<Razorpay />} /> */}
       {/* <Route path="/ProductPage" element={<ProductPage />} /> */}
