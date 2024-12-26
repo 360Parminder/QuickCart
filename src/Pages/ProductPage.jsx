@@ -101,7 +101,7 @@ const ProductPage = () => {
           <div
             key={index}
             onClick={() => handleAddToCart(product)}
-            className="flex flex-row items-center justify-between border border-purple-600 rounded-lg p-4 bg-purple-900 text-center cursor-pointer hover:bg-purple-700"
+            className="flex flex-row items-center justify-between border border-[#5a12c5] rounded-lg p-4 bg-[#2c076e] text-center cursor-pointer hover:bg-[#4a11a1]"
           >
             <img
               src={product.image}
@@ -126,7 +126,7 @@ const ProductPage = () => {
 
       {/* Cart Section */}
       {cart.length > 0 && (
-        <div className="w-2/5 bg-purple-900 py-4 rounded-lg relative border-purple-600 border">
+        <div className="w-2/5 bg-[#2c076e] py-4 rounded-lg relative border-[#5a12c5] border">
           <div className="mb-4 flex justify-between px-4">
             <div>
               <p>Order Id:</p>
@@ -170,7 +170,7 @@ const ProductPage = () => {
               </tbody>
             </table>
           </div>
-          <div className="absolute bottom-1 px-4 pt-2 border-t border-purple-600 w-full bg-purple-900">
+          <div className="absolute bottom-1 px-4 pt-2 border-t border-[#5a12c5] w-full bg-[#2c076e]">
             <div className="flex justify-between">
               <p>Total:</p>
               <p>{formatPrice(cart.reduce((acc, item) => acc + item.price * item.quantity, 0))}</p>

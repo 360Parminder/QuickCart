@@ -2,45 +2,49 @@ import React, { useState, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Auth } from '../Context/UserAuth';
 import { IoHomeOutline, IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline } from 'react-icons/io5';
+import logo from '../Assets/Images/logo.png';
+import icon from '../Assets/Images/logoicon.png';
+import { UserData } from '../Context/UserData';
 
 const Dashboard = () => {
     const { logout } = useContext(Auth);
-    const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+    const { userdata } = useContext(UserData);
+    const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
     return (
-        <div className="flex w-full h-screen">
+        <div className="flex w-full h-screen py-2">
             {/* Navigation Section */}
             <nav
                 onMouseEnter={() => setIsNavCollapsed(false)}
                 onMouseLeave={() => setIsNavCollapsed(true)}
-                className={`${
-                    isNavCollapsed ? 'w-16' : 'w-64'
-                } transition-all duration-300 bg-gray-800 text-white h-5/6 overflow-hidden mx-3 my-2 rounded-lg shadow-lg`}
+                className={`${isNavCollapsed ? 'w-16' : 'w-64'} transition-all duration-300 bg-[#2c076e] border border-[#5a12c5] text-white h-full overflow-hidden mx-3 py-2 rounded-lg shadow-lg flex flex-col`}
             >
-                <h1
-                    className={`${
-                        isNavCollapsed ? 'opacity-0' : 'opacity-100'
-                    } text-2xl font-bold mb-6 transition-opacity duration-300 p-4`}
-                >
-                    {isNavCollapsed ? '' : 'Dashboard'}
+                <h1 className="text-2xl font-bold mb-6 transition-opacity duration-300 p-4">
+                    {isNavCollapsed ? <img src={icon} alt="" /> : <img src={logo} alt="" />}
                 </h1>
-                <ul className="space-y-4 flex flex-col items-start">
+                <ul className="space-y-4 flex-grow flex flex-col items-start whitespace-nowrap">
                     <li>
+                        <Link to="/Dashboard" className="flex items-center space-x-4 hover:text-gray-300 px-4">
+                            <IoCartOutline size={24} />
+                            {!isNavCollapsed && <span>Generate Bill</span>}
+                        </Link>
+                    </li>
+                    {/* <li>
                         <Link to="Home" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoHomeOutline size={24} />
                             {!isNavCollapsed && <span>Home</span>}
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to="profile" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoPersonOutline size={24} />
-                            {!isNavCollapsed && <span>Profile</span>}
+                            {!isNavCollapsed && <span>Shop Details</span>}
                         </Link>
                     </li>
                     <li>
                         <Link to="add-delete-products" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoCartOutline size={24} />
-                            {!isNavCollapsed && <span>Add/Delete Products</span>}
+                            {!isNavCollapsed && <span className="whitespace-nowrap">Add/Delete Products</span>}
                         </Link>
                     </li>
                     <li>
@@ -56,27 +60,32 @@ const Dashboard = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="Products" className="flex items-center space-x-4 hover:text-gray-300 px-4">
-                            <IoCartOutline size={24} />
-                            {!isNavCollapsed && <span>Generate Bill</span>}
-                        </Link>
-                    </li>
-                    <li>
                         <Link to="register-employee" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoPeopleOutline size={24} />
                             {!isNavCollapsed && <span>Register Employee</span>}
                         </Link>
                     </li>
-                    <li>
-                        <button
-                            className="flex items-center space-x-4 bg-red-600 rounded-md p-2 px-4 hover:bg-red-700"
-                            onClick={() => logout()}
-                        >
-                            <IoLogOutOutline size={24} />
-                            {!isNavCollapsed && <span>Log out</span>}
-                        </button>
-                    </li>
                 </ul>
+                {/* Logout Button */}
+                <div className="flex flex-col items-center mt-auto mb-4 whitespace-nowrap">
+                    <button
+                        className="flex items-center space-x-4 bg-red-600 rounded-md p-2 px-4 hover:bg-red-700"
+                        onClick={logout}
+                    >
+                        <IoLogOutOutline size={24} />
+                        {!isNavCollapsed && <span>Log out</span>}
+                    </button>
+                </div>
+                {/* User Info */}
+                <Link to="profile" className="flex flex-row items-center mt-4 self-center">
+                    <img className="w-12 h-12 rounded-full" src={userdata.image} alt="Profile avatar" />
+                    {!isNavCollapsed && (
+                        <div className="flex flex-col items-start ml-2 whitespace-nowrap">
+                            <p className="text-sm font-semibold">{userdata.firstname} {userdata.lastname}</p>
+                            <p className="text-xs">{userdata.role}</p>
+                        </div>
+                    )}
+                </Link>
             </nav>
 
             {/* Content Section */}

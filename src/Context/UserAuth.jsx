@@ -24,7 +24,8 @@ export const AuthProvider = ({ children }) => {
         if (response.success) {
             setIsAuthenticated(true);
             navigate('/Dashboard');
-            Cookies.set("Authtoken", response.token);
+            Cookies.set("Authtoken", response.data.token);
+            setToken(response.data.token);
         } else {
             console.log(response.message);
         }
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }) => {
         await Cookies.remove("Authtoken");
     }
     return (
-        <Auth.Provider value={{isAuthenticated, isLoading, login, logout}}>
+        <Auth.Provider value={{isAuthenticated, isLoading, login, logout,token}}>
             {children}
         </Auth.Provider>
     );

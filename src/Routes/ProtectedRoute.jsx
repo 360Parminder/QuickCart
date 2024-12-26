@@ -6,7 +6,7 @@ import { UserData } from "../Context/UserData";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { isAuthenticated } = useContext(Auth);
-  const { user } = useContext(UserData);
+  const { userdata } = useContext(UserData);
 
   // Redirect to login if not authenticated
   if (!isAuthenticated) {
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   }
 
   // Redirect to unauthorized if the user's role is not allowed
-  if (!allowedRoles.includes(user.role)) {
+  if (!allowedRoles.includes(userdata.role)) {
     // Cookies.remove("Authtoken");
     // return <Navigate to="/unauthorized" />;
     alert("Unauthorized");
