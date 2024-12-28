@@ -9,6 +9,7 @@ import AddDeleteProducts from "../Pages/AddDeleteProducts";
 import ProductPage from "../Pages/ProductPage";
 import Razorpay from "../Pages/RazorPay";
 import Profile from "../Pages/Profile";
+import ShopDetails from "../Pages/ShopDetails";
 
 const AppRoutes = () => {
     return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
           } /> 
          <Route path="profile" element={<Profile />} />
+         <Route path="shopDetails" element={<ShopDetails/>} />
       {/*  <Route index element={<Home />} />
         <Route path="/sales" element={<Sales />} />
         <Route path="/update" element={<Update />} />

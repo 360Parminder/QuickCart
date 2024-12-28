@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Auth } from '../Context/UserAuth';
-import { IoHomeOutline, IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline } from 'react-icons/io5';
+import { IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline,IoStorefrontOutline } from 'react-icons/io5';
 import logo from '../Assets/Images/logo.png';
 import icon from '../Assets/Images/logoicon.png';
 import { UserData } from '../Context/UserData';
@@ -10,7 +10,6 @@ const Dashboard = () => {
     const { logout } = useContext(Auth);
     const { userdata } = useContext(UserData);
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-
     return (
         <div className="flex w-full h-screen py-2">
             {/* Navigation Section */}
@@ -20,7 +19,7 @@ const Dashboard = () => {
                 className={`${isNavCollapsed ? 'w-16' : 'w-64'} transition-all duration-300 bg-[#2c076e] border border-[#5a12c5] text-white h-full overflow-hidden mx-3 py-2 rounded-lg shadow-lg flex flex-col`}
             >
                 <h1 className="text-2xl font-bold mb-6 transition-opacity duration-300 p-4">
-                    {isNavCollapsed ? <img src={icon} alt="" /> : <img src={logo} alt="" />}
+                    {isNavCollapsed ? <img src={icon} alt="" /> : <img src={logo} alt="Product logo" />}
                 </h1>
                 <ul className="space-y-4 flex-grow flex flex-col items-start whitespace-nowrap">
                     <li>
@@ -35,12 +34,7 @@ const Dashboard = () => {
                             {!isNavCollapsed && <span>Home</span>}
                         </Link>
                     </li> */}
-                    <li>
-                        <Link to="profile" className="flex items-center space-x-4 hover:text-gray-300 px-4">
-                            <IoPersonOutline size={24} />
-                            {!isNavCollapsed && <span>Shop Details</span>}
-                        </Link>
-                    </li>
+                   
                     <li>
                         <Link to="add-delete-products" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoCartOutline size={24} />
@@ -63,6 +57,12 @@ const Dashboard = () => {
                         <Link to="register-employee" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoPeopleOutline size={24} />
                             {!isNavCollapsed && <span>Register Employee</span>}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="shopDetails" className="flex items-center space-x-4 hover:text-gray-300 px-4">
+                            <IoStorefrontOutline size={24} />
+                            {!isNavCollapsed && <span>Shop Details</span>}
                         </Link>
                     </li>
                 </ul>

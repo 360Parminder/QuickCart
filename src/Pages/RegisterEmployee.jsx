@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { User } from '../Services/User';
 
 const RegisterEmployee = () => {
     const [formData, setFormData] = useState({
-        name: '',
+        firstname: '',
+        lastname: '',
         role: '',
         password: '',
         mobile: '',
+        email: '',
     });
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
@@ -39,7 +42,8 @@ const RegisterEmployee = () => {
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formData.name) newErrors.name = 'Name is required.';
+        if (!formData.firstname) newErrors.firstname = 'First name is required.';
+        if (!formData.lastname) newErrors.lastname = 'Last name is required.';
         if (!formData.role) newErrors.role = 'Role is required.';
         if (!formData.mobile || formData.mobile.length !== 10)
             newErrors.mobile = 'Mobile number must be 10 digits.';
@@ -48,20 +52,28 @@ const RegisterEmployee = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         if (!validateForm()) return;
 
         setLoading(true);
-
-        setTimeout(() => {
-            console.log('Form data submitted:', formData);
-            setLoading(false);
-            alert('Employee registered successfully!');
-            setFormData({ name: '', role: '', password: '', mobile: '' }); // Reset form
-            setErrors({}); // Clear errors
-        }, 2000); // Simulate an API call
+        const response = await User.registerEmployee(formData)
+        if (response.success) {
+            alert(response.message)
+            setFormData({
+                firstname: '',
+                lastname: '',
+                role: '',
+                password: '',
+                mobile: '',
+                email: '',
+            });
+        }
+        else{
+            alert(response.message)
+        }
+        setLoading(false);
     };
 
     return (
@@ -69,17 +81,30 @@ const RegisterEmployee = () => {
             <h2 className="text-center text-2xl font-bold mb-6">Register Employee</h2>
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Name:</label>
+                    <label className="block text-sm font-bold mb-2">First Name:</label>
                     <input
                         type="text"
-                        name="name"
-                        value={formData.name}
+                        name="firstname"
+                        value={formData.firstname}
                         onChange={handleChange}
                         required
                         className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                        placeholder="Employee Name"
+                        placeholder="First Name"
                     />
-                    {errors.name && <div className="text-red-500 text-sm">{errors.name}</div>}
+                    {errors.firstname && <div className="text-red-500 text-sm">{errors.firstname}</div>}
+                </div>
+                <div className="mb-4">
+                    <label className="block text-sm font-bold mb-2">Last Name:</label>
+                    <input
+                        type="text"
+                        name="lastname"
+                        value={formData.lastname}
+                        onChange={handleChange}
+                        required
+                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        placeholder="Last Name"
+                    />
+                    {errors.lastname && <div className="text-red-500 text-sm">{errors.lastname}</div>}
                 </div>
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2">Role:</label>
@@ -92,10 +117,9 @@ const RegisterEmployee = () => {
                         placeholder="Select Role"
                     >
                         <option value="">Select Role</option>
-                        <option value="CounterEmployee">Counter Employee</option>
-                        <option value="InventoryManager">Inventory Manager</option>
-                        <option value="Healer">Helper</option>
-                        <option value="Delivery">Delivery</option>
+                        <option value="counter boy">Counter Boy</option>
+                        <option value="inventory manager">Inventory Manager</option>
+                        <option value="helper">Helper</option>
                         <option value="HR">HR</option>
                     </select>
                     {errors.role && <div className="text-red-500 text-sm">{errors.role}</div>}
@@ -126,13 +150,28 @@ const RegisterEmployee = () => {
                     />
                     {errors.mobile && <div className="text-red-500 text-sm">{errors.mobile}</div>}
                 </div>
-                <button
-                    type="submit"
-                    className={`w-full p-2 text-white rounded ${loading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
-                    disabled={loading}
-                >
-                    {loading ? 'Registering...' : 'Register'}
-                </button>
+                <div className="mb-4">
+                    <label className="block text-sm font-bold mb-2">Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        placeholder="Email"
+                    />
+                    {errors.email && <div className="text-red-500 text-sm">{errors.email}</div>}
+                </div>
+                <div className="mb-4 col-span-2">
+                    <button
+                        type="submit"
+                        className={`w-full p-2 text-white rounded ${loading ? 'bg-gray-500' : 'bg-[#6b16eb] text-white hover:bg-[#7b2bff]'}`}
+                        disabled={loading}
+                    >
+                        {loading ? 'Registering...' : 'Register'}
+                    </button>
+                </div>
             </form>
         </div>
     );
