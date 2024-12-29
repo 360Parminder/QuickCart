@@ -117,10 +117,11 @@ const RegisterEmployee = () => {
                         placeholder="Select Role"
                     >
                         <option value="">Select Role</option>
-                        <option value="counter boy">Counter Boy</option>
-                        <option value="inventory manager">Inventory Manager</option>
-                        <option value="helper">Helper</option>
+                        <option value="CounterEmployee">Counter Boy</option>
+                        <option value="InventoryManager">Inventory Manager</option>
+                        <option value="Helper">Helper</option>
                         <option value="HR">HR</option>
+                        <option value="Delivery">Delivery</option>
                     </select>
                     {errors.role && <div className="text-red-500 text-sm">{errors.role}</div>}
                     <small className="text-gray-400">{rolePlaceholder[formData.role] || 'Please select a role.'}</small>

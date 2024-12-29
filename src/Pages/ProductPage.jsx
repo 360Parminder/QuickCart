@@ -10,14 +10,11 @@ const ProductPage = () => {
   const [cart, setCart] = useState([]);
   const [orderId, setOrderId] = useState(null);
 
-
- 
-
   // Fetch products on mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await Product.allProducts("8267549");
+        const response = await Product.allProducts();
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -96,33 +93,45 @@ const ProductPage = () => {
   return (
     <div className="bg-black text-white h-full flex flex-row justify-between gap-4">
       {/* Products Section */}
-      <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" : "grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-scroll scrollbar-hidden`}>
-        {products.map((product, index) => (
-          <div
-            key={index}
-            onClick={() => handleAddToCart(product)}
-            className="flex flex-row items-center justify-between border border-[#5a12c5] rounded-lg p-4 bg-[#2c076e] text-center cursor-pointer hover:bg-[#4a11a1]"
+      {products.length === 0 ? (
+        <div className="flex flex-col items-center justify-center w-full h-full">
+          <p className="text-lg">Please add products to the store.</p>
+          <button
+            onClick={() => navigate("add-delete-products")}
+            className="mt-4 rounded-md px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition duration-300"
           >
-            <img
-              src={product.image}
-              alt={`Image of ${product.name}`}
-              className="rounded-md w-32 h-32 object-cover mb-4"
-            />
-            <div>
-              <p>Product Name</p>
-              <h3 className="text-lg font-medium">{product.name}</h3>
+            Go to Add Product
+          </button>
+        </div>
+      ) : (
+        <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" : "grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-scroll scrollbar-hidden`}>
+          {products.map((product, index) => (
+            <div
+              key={index}
+              onClick={() => handleAddToCart(product)}
+              className="flex flex-row items-center justify-between border border-[#5a12c5] h-28 rounded-lg p-4 bg-[#2c076e] text-center cursor-pointer hover:bg-[#4a11a1]"
+            >
+              <img
+                src={product.image}
+                alt={`Image of ${product.name}`}
+                className="rounded-md w-32 h-32 object-cover mb-4"
+              />
+              <div>
+                <p>Product Name</p>
+                <h3 className="text-lg font-medium">{product.name}</h3>
+              </div>
+              <div>
+                <p>Inventory</p>
+                <p>{product?.quantityInStock} in Stock</p>
+              </div>
+              <div>
+                <p>{product?.quantity} {product?.unit}</p>
+                <h3 className="text-gray-300 text-lg font-medium">{formatPrice(product.price)}</h3>
+              </div>
             </div>
-            <div>
-              <p>Inventory</p>
-              <p>{product?.quantityInStock} in Stock</p>
-            </div>
-            <div>
-              <p>{product?.quantity} {product?.unit}</p>
-              <h3 className="text-gray-300 text-lg font-medium">{formatPrice(product.price)}</h3>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Cart Section */}
       {cart.length > 0 && (

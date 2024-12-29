@@ -1,60 +1,56 @@
 import { useState } from "react";
 import '../Styles/Global.css';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { User } from "../Services/User";
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        shopImage: "",
         shopName: "",
-        ownerName: "",
-        phone: "",
-        password: "",
+        ownerFirstName: "",
+        ownerLastName: "",
         email: "",
-        bankAccountNo: "",
-        bankAccountHolderName: "",
-        ifscCode: "",
+        accountNumber: "",
+        holderName: "",
+        ifsc: "",
+        street: "",
         city: "",
         state: "",
+        zip: "",
         country: "",
-        pincode: ""
+        mobile: "",
+        role: "ShopOwner", // Set default role as ShopOwner
+        password: ""
     });
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+            password: name === "mobile" ? value : prevData.password
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { shopName, ownerName, phone, password } = formData;
+        const { shopName, ownerFirstName, ownerLastName, mobile, password } = formData;
         
-        if (!shopName || !ownerName || !phone || !password) {
+        if (!shopName || !ownerFirstName || !ownerLastName || !mobile || !password) {
             alert("Please fill all the required fields");
             return;
         }
 
         try {
             setIsLoading(true);
-            const response = await axios.post("https://foodplanet.me/api/v1/user/register", {
-                username: ownerName,
-                role: "admin",
-                password,
-                mobile: parseInt(phone)
-            }, {
-                withCredentials: true
-            });
-
-            if (response.status === 200) {
-                alert("Admin Registered Successfully");
+            const response = await User.RegisterShop(formData);
+            if (response.success) {
+                alert("Shop Registered Successfully");
                 setIsLoading(false);
+                // navigate('/success'); // Navigate to a success page or another route
             } else {
-                alert(response.data.message);
+                alert(response.message);
                 setIsLoading(false);
             }
         } catch (error) {
@@ -71,16 +67,6 @@ const Register = () => {
                 onSubmit={handleSubmit}
             >
                 <div className="form-group">
-                    <label className="label">Shop Image</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="shopImage" 
-                        className="input" 
-                        placeholder="Enter shop image URL" 
-                    />
-                </div>
-                <div className="form-group">
                     <label className="label">Shop Name</label>
                     <input 
                         onChange={handleChange} 
@@ -91,33 +77,23 @@ const Register = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="label">Owner Name</label>
+                    <label className="label">Owner First Name</label>
                     <input 
                         onChange={handleChange} 
                         type="text" 
-                        name="ownerName" 
+                        name="ownerFirstName" 
                         className="input" 
-                        placeholder="Enter owner name" 
+                        placeholder="Enter owner first name" 
                     />
                 </div>
                 <div className="form-group">
-                    <label className="label">Phone Number</label>
+                    <label className="label">Owner Last Name</label>
                     <input 
                         onChange={handleChange} 
                         type="text" 
-                        name="phone" 
+                        name="ownerLastName" 
                         className="input" 
-                        placeholder="Enter phone number" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Password</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="password" 
-                        name="password" 
-                        className="input" 
-                        placeholder="Enter password" 
+                        placeholder="Enter owner last name" 
                     />
                 </div>
                 <div className="form-group">
@@ -131,13 +107,13 @@ const Register = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="label">Bank Account Number</label>
+                    <label className="label">Account Number</label>
                     <input 
                         onChange={handleChange} 
                         type="text" 
-                        name="bankAccountNo" 
+                        name="accountNumber" 
                         className="input" 
-                        placeholder="Enter bank account number" 
+                        placeholder="Enter account number" 
                     />
                 </div>
                 <div className="form-group">
@@ -145,7 +121,7 @@ const Register = () => {
                     <input 
                         onChange={handleChange} 
                         type="text" 
-                        name="bankAccountHolderName" 
+                        name="holderName" 
                         className="input" 
                         placeholder="Enter account holder name" 
                     />
@@ -155,9 +131,19 @@ const Register = () => {
                     <input 
                         onChange={handleChange} 
                         type="text" 
-                        name="ifscCode" 
+                        name="ifsc" 
                         className="input" 
                         placeholder="Enter IFSC code" 
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="label">Street</label>
+                    <input 
+                        onChange={handleChange} 
+                        type="text" 
+                        name="street" 
+                        className="input" 
+                        placeholder="Enter street" 
                     />
                 </div>
                 <div className="form-group">
@@ -181,6 +167,16 @@ const Register = () => {
                     />
                 </div>
                 <div className="form-group">
+                    <label className="label">Zip</label>
+                    <input 
+                        onChange={handleChange} 
+                        type="text" 
+                        name="zip" 
+                        className="input" 
+                        placeholder="Enter zip" 
+                    />
+                </div>
+                <div className="form-group">
                     <label className="label">Country</label>
                     <input 
                         onChange={handleChange} 
@@ -191,14 +187,25 @@ const Register = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="label">Pincode</label>
+                    <label className="label">Phone Number</label>
                     <input 
                         onChange={handleChange} 
                         type="text" 
-                        name="pincode" 
+                        name="mobile" 
                         className="input" 
-                        placeholder="Enter pincode" 
+                        placeholder="Enter phone number" 
                     />
+                </div>
+                <div className="form-group">
+                    <label className="label">Password</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        className="input" 
+                        value={formData.mobile} 
+                        disabled 
+                    />
+                    <p className="text-gray-500 text-sm">Password will be automatically set as the phone number</p>
                 </div>
 
                 <div className="form-group col-span-2 flex justify-center items-center">

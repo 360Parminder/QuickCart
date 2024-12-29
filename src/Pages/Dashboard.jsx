@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Auth } from '../Context/UserAuth';
-import { IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline,IoStorefrontOutline } from 'react-icons/io5';
+import { IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline,IoStorefrontOutline, IoCardOutline } from 'react-icons/io5';
 import logo from '../Assets/Images/logo.png';
 import icon from '../Assets/Images/logoicon.png';
 import { UserData } from '../Context/UserData';
@@ -24,7 +24,7 @@ const Dashboard = () => {
                 <ul className="space-y-4 flex-grow flex flex-col items-start whitespace-nowrap">
                     <li>
                         <Link to="/Dashboard" className="flex items-center space-x-4 hover:text-gray-300 px-4">
-                            <IoCartOutline size={24} />
+                            <IoCardOutline size={24} />
                             {!isNavCollapsed && <span>Generate Bill</span>}
                         </Link>
                     </li>

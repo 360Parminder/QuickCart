@@ -34,7 +34,9 @@ export const AuthProvider = ({ children }) => {
     const logout = async() => {
         setIsAuthenticated(false);
         navigate('/');
-        await Cookies.remove("Authtoken");
+        Cookies.remove("Authtoken");
+        setToken("");
+        localStorage.clear();
     }
     return (
         <Auth.Provider value={{isAuthenticated, isLoading, login, logout,token}}>

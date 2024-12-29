@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserData } from '../Context/UserData';
 import { User } from '../Services/User';
+import { getTimeZone } from '../Utils/timeDate';
 
 const Profile = () => {
     const { userdata } = useContext(UserData);
@@ -52,7 +53,7 @@ const Profile = () => {
                         <input
                             type="text"
                             name="firstName"
-                            value={user.firstname || ''}
+                            value={user.firstName || ''}
                             onChange={handleChange}
                             className="w-full p-2 border rounded"
                             disabled={!isEditing}
@@ -63,7 +64,7 @@ const Profile = () => {
                         <input
                             type="text"
                             name="lastName"
-                            value={user.lastname || ''}
+                            value={user.lastName || ''}
                             onChange={handleChange}
                             className="w-full p-2 border rounded"
                             disabled={!isEditing}
@@ -85,7 +86,7 @@ const Profile = () => {
                         <input
                             type="text"
                             name="timezone"
-                            value={user.timezone || ''}
+                            value={getTimeZone() || ''}
                             onChange={handleChange}
                             className="w-full p-2 border rounded"
                             disabled={!isEditing}
@@ -108,7 +109,7 @@ const Profile = () => {
                         <input
                             type="text"
                             name="_id"
-                            value={user._id || ''}
+                            value={user.employeeId || ''}
                             className="w-full p-2 border rounded"
                             disabled
                         />

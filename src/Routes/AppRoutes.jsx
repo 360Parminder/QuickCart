@@ -19,12 +19,12 @@ const AppRoutes = () => {
       <Route path="/Dashboard" element={<Dashboard />} >
       <Route index element={<ProductPage/>} />
       <Route path="add-delete-products" element={
-        <ProtectedRoute allowedRoles={["Owner"]}>
+        <ProtectedRoute allowedRoles={["ShopOwner"]}>
           <AddDeleteProducts />
         </ProtectedRoute>
       } />
         <Route path="register-employee" element={
-          <ProtectedRoute allowedRoles={["Owner"]}>
+          <ProtectedRoute allowedRoles={["ShopOwner"]}>
              <RegisterEmployee />
           </ProtectedRoute>
           } /> 

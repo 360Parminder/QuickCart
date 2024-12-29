@@ -7,7 +7,6 @@ const AddDeleteProducts = () => {
         price: '',
         quantity: '',
         unit: '', // Unit will be selected from dropdown
-        shopId: '',
         image: null,
         quantityInStock: ''
     });
@@ -43,12 +42,23 @@ const AddDeleteProducts = () => {
         formData.append('price', product.price);
         formData.append('quantity', product.quantity);
         formData.append('unit', product.unit);
-        formData.append('shopId', product.shopId);
         formData.append('quantityInStock', product.quantityInStock);
         formData.append('image', product.image);
 
         const response = await Product.addProduct(formData);
-        console.log(response);
+        if (response.success) {
+            alert(response.message);
+            // Clear form fields
+            setProduct({
+                name: '',
+                price: '',
+                quantity: '',
+                unit: '',
+                image: null,
+                quantityInStock: ''
+            });
+            setPreviewImage(null);
+        }
         // Handle response logic
     };
 
@@ -105,17 +115,6 @@ const AddDeleteProducts = () => {
                         <option value="ml">Milliliter (ml)</option>
                         <option value="pcs">Pieces (pcs)</option>
                     </select>
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Shop ID:</label>
-                    <input
-                        type="text"
-                        name="shopId"
-                        value={product.shopId}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-3 py-2 border rounded-lg"
-                    />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700">Quantity in Stock:</label>
