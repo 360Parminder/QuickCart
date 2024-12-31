@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Auth } from '../Context/UserAuth';
-import { IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline,IoStorefrontOutline, IoCardOutline } from 'react-icons/io5';
+import { IoPersonOutline, IoCartOutline, IoStatsChartOutline, IoConstructOutline, IoPeopleOutline, IoLogOutOutline,IoStorefrontOutline, IoCardOutline, } from 'react-icons/io5';
 import logo from '../Assets/Images/logo.png';
 import icon from '../Assets/Images/logoicon.png';
 import { UserData } from '../Context/UserData';
@@ -38,7 +38,7 @@ const Dashboard = () => {
                     <li>
                         <Link to="add-delete-products" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoCartOutline size={24} />
-                            {!isNavCollapsed && <span className="whitespace-nowrap">Add/Delete Products</span>}
+                            {!isNavCollapsed && <span className="whitespace-nowrap">Add Products</span>}
                         </Link>
                     </li>
                     <li>
@@ -81,7 +81,7 @@ const Dashboard = () => {
                     <img className="w-12 h-12 rounded-full" src={userdata.image} alt="Profile avatar" />
                     {!isNavCollapsed && (
                         <div className="flex flex-col items-start ml-2 whitespace-nowrap">
-                            <p className="text-sm font-semibold">{userdata.firstname} {userdata.lastname}</p>
+                            <p className="text-sm font-semibold capitalize">{userdata.firstName} {userdata.lastName}</p>
                             <p className="text-xs">{userdata.role}</p>
                         </div>
                     )}

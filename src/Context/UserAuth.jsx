@@ -26,10 +26,12 @@ export const AuthProvider = ({ children }) => {
             navigate('/Dashboard');
             Cookies.set("Authtoken", response.data.token);
             setToken(response.data.token);
+            setIsLoading(false);
+            return response;
         } else {
-            console.log(response.message);
+            setIsLoading(false);
+            return response;
         }
-        setIsLoading(false);
     }
     const logout = async() => {
         setIsAuthenticated(false);

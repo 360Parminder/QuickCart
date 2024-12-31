@@ -1,7 +1,23 @@
 import { useState } from "react";
-import '../Styles/Global.css';
+import "../Styles/Global.css";
 import { useNavigate } from "react-router-dom";
 import { User } from "../Services/User";
+
+const InputField = ({ label, name, type, placeholder, value, onChange, disabled = false, helperText }) => (
+    <div className="form-group">
+        <label className="label">{label}</label>
+        <input
+            type={type}
+            name={name}
+            className="input"
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
+        />
+        {helperText && <p className="text-gray-500 text-sm">{helperText}</p>}
+    </div>
+);
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -18,40 +34,42 @@ const Register = () => {
         zip: "",
         country: "",
         mobile: "",
-        role: "ShopOwner", // Set default role as ShopOwner
-        password: ""
+        role: "ShopOwner", // Default role
     });
     const [isLoading, setIsLoading] = useState(false);
+    const [validationErrors, setValidationErrors] = useState({});
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-            password: name === "mobile" ? value : prevData.password
-        }));
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const validateForm = () => {
+        const errors = {};
+        const requiredFields = ["shopName", "ownerFirstName", "ownerLastName", "mobile"];
+        requiredFields.forEach((field) => {
+            if (!formData[field]) errors[field] = `${field} is required`;
+        });
+        setValidationErrors(errors);
+        return Object.keys(errors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { shopName, ownerFirstName, ownerLastName, mobile, password } = formData;
-        
-        if (!shopName || !ownerFirstName || !ownerLastName || !mobile || !password) {
-            alert("Please fill all the required fields");
-            return;
-        }
 
+        if (!validateForm()) return;
+
+        const payload = { ...formData, password: formData.mobile }; // Derive password from mobile
         try {
             setIsLoading(true);
-            const response = await User.RegisterShop(formData);
+            const response = await User.RegisterShop(payload);
+            setIsLoading(false);
             if (response.success) {
                 alert("Shop Registered Successfully");
-                setIsLoading(false);
-                // navigate('/success'); // Navigate to a success page or another route
+                navigate("/success");
             } else {
                 alert(response.message);
-                setIsLoading(false);
             }
         } catch (error) {
             console.error(error);
@@ -61,166 +79,144 @@ const Register = () => {
     };
 
     return (
-        <div className="w-screen h-screen bg-gray-900 flex justify-center items-center">
-            <form 
-                className="w-full md:w-5/6 h-full md:h-[90%] bg-[#1c1917] grid grid-cols-1 md:grid-cols-3 gap-4 md:justify-center md:items-center rounded-lg p-2 md:p-10" 
+        <div className="w-screen h-screen bg-[#000] flex justify-center items-center text-[#fff]">
+            <form
+                className="w-full md:w-5/6 h-full  bg-[#1c1917] grid grid-cols-1 md:grid-cols-3 gap-4 md:justify-center md:items-center rounded-lg p-1 md:p-10"
                 onSubmit={handleSubmit}
             >
-                <div className="form-group">
-                    <label className="label">Shop Name</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="shopName" 
-                        className="input" 
-                        placeholder="Enter shop name" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Owner First Name</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="ownerFirstName" 
-                        className="input" 
-                        placeholder="Enter owner first name" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Owner Last Name</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="ownerLastName" 
-                        className="input" 
-                        placeholder="Enter owner last name" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Email</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="email" 
-                        name="email" 
-                        className="input" 
-                        placeholder="Enter email" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Account Number</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="accountNumber" 
-                        className="input" 
-                        placeholder="Enter account number" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Account Holder Name</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="holderName" 
-                        className="input" 
-                        placeholder="Enter account holder name" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">IFSC Code</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="ifsc" 
-                        className="input" 
-                        placeholder="Enter IFSC code" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Street</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="street" 
-                        className="input" 
-                        placeholder="Enter street" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">City</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="city" 
-                        className="input" 
-                        placeholder="Enter city" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">State</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="state" 
-                        className="input" 
-                        placeholder="Enter state" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Zip</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="zip" 
-                        className="input" 
-                        placeholder="Enter zip" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Country</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="country" 
-                        className="input" 
-                        placeholder="Enter country" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Phone Number</label>
-                    <input 
-                        onChange={handleChange} 
-                        type="text" 
-                        name="mobile" 
-                        className="input" 
-                        placeholder="Enter phone number" 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label">Password</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        className="input" 
-                        value={formData.mobile} 
-                        disabled 
-                    />
-                    <p className="text-gray-500 text-sm">Password will be automatically set as the phone number</p>
-                </div>
-
-                <div className="form-group col-span-2 flex justify-center items-center">
-                    {isLoading ? (
-                        <div className="bg-[#bc560a] w-4/6 py-2 rounded-md font-semibold flex justify-center items-center">
-                            <p className="text-white">Loading...</p>
-                        </div>
-                    ) : (
-                        <button 
-                            className="bg-[#bc560a] w-4/6 py-2 rounded-md font-semibold" 
-                            type="submit"
-                        >
-                            Register Admin
-                        </button>
-                    )}
+                <InputField
+                    label="Shop Name"
+                    name="shopName"
+                    type="text"
+                    placeholder="Enter shop name"
+                    value={formData.shopName}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Owner First Name"
+                    name="ownerFirstName"
+                    type="text"
+                    placeholder="Enter owner first name"
+                    value={formData.ownerFirstName}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Owner Last Name"
+                    name="ownerLastName"
+                    type="text"
+                    placeholder="Enter owner last name"
+                    value={formData.ownerLastName}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="Enter email"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Account Number"
+                    name="accountNumber"
+                    type="text"
+                    placeholder="Enter account number"
+                    value={formData.accountNumber}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Account Holder Name"
+                    name="holderName"
+                    type="text"
+                    placeholder="Enter account holder name"
+                    value={formData.holderName}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="IFSC Code"
+                    name="ifsc"
+                    type="text"
+                    placeholder="Enter IFSC code"
+                    value={formData.ifsc}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Street"
+                    name="street"
+                    type="text"
+                    placeholder="Enter street"
+                    value={formData.street}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="City"
+                    name="city"
+                    type="text"
+                    placeholder="Enter city"
+                    value={formData.city}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="State"
+                    name="state"
+                    type="text"
+                    placeholder="Enter state"
+                    value={formData.state}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Zip"
+                    name="zip"
+                    type="text"
+                    placeholder="Enter zip"
+                    value={formData.zip}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Country"
+                    name="country"
+                    type="text"
+                    placeholder="Enter country"
+                    value={formData.country}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Phone Number"
+                    name="mobile"
+                    type="text"
+                    placeholder="Enter phone number"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                />
+                <InputField
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="Password will auto-fill as mobile"
+                    value={formData.mobile}
+                    disabled
+                    helperText="Password will be automatically set as the phone number"
+                />
+                {Object.keys(validationErrors).length > 0 && (
+                    <div className="col-span-3 text-red-500">
+                        <ul>
+                            {Object.entries(validationErrors).map(([field, error]) => (
+                                <li key={field}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                <div className=" col-span-3 flex flex-col justify-center items-center">
+                    <button
+                        className="bg-[#6b16eb] w-4/6 py-2 rounded-md font-semibold"
+                        type="submit"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Registering..." : "Register Shop"}
+                    </button>
+                    <p className="mt-4">
+                        Already have a registered shop?
+                    </p>
                 </div>
             </form>
         </div>

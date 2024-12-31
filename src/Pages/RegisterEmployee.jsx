@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { User } from '../Services/User';
+import "../Styles/Global.css";
 
 const RegisterEmployee = () => {
     const [formData, setFormData] = useState({
@@ -88,7 +89,7 @@ const RegisterEmployee = () => {
                         value={formData.firstname}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        className="input"
                         placeholder="First Name"
                     />
                     {errors.firstname && <div className="text-red-500 text-sm">{errors.firstname}</div>}
@@ -101,7 +102,7 @@ const RegisterEmployee = () => {
                         value={formData.lastname}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        className="input"
                         placeholder="Last Name"
                     />
                     {errors.lastname && <div className="text-red-500 text-sm">{errors.lastname}</div>}
@@ -113,7 +114,7 @@ const RegisterEmployee = () => {
                         value={formData.role}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        className="input"
                         placeholder="Select Role"
                     >
                         <option value="">Select Role</option>
@@ -133,7 +134,7 @@ const RegisterEmployee = () => {
                         name="password"
                         value={formData.password}
                         disabled
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black bg-gray-200"
+                        className="input"
                         placeholder="Password"
                     />
                     <small className="text-gray-400">Password is auto-set to the mobile number.</small>
@@ -146,7 +147,7 @@ const RegisterEmployee = () => {
                         value={formData.mobile}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        className="input"
                         placeholder="Mobile Number"
                     />
                     {errors.mobile && <div className="text-red-500 text-sm">{errors.mobile}</div>}
@@ -159,7 +160,7 @@ const RegisterEmployee = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                        className="input"
                         placeholder="Email"
                     />
                     {errors.email && <div className="text-red-500 text-sm">{errors.email}</div>}

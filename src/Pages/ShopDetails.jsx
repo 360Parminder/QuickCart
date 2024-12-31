@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { UserData } from '../Context/UserData';
+import "../Styles/Global.css";
 
 const ShopDetails = () => {
     const { shopdata, employees: contextEmployees } = useContext(UserData);
@@ -32,6 +33,7 @@ const ShopDetails = () => {
 
     return (
         <div className="flex h-full w-full flex-col overflow-y-scroll text-white">
+            <div className='p-10 bg-[#1c1917] rounded-2xl shadow-xl'>
             <div className="bg-[#2c076e] border border-[#5a12c5] p-8 rounded-lg shadow-lg mb-10">
                 <p className="text-lg font-semibold w-full my-5">Shop Details</p>
                 <div className="w-full grid grid-cols-2 gap-4">
@@ -42,7 +44,7 @@ const ShopDetails = () => {
                             name="shopName"
                             value={shop.shopName || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -53,7 +55,7 @@ const ShopDetails = () => {
                             name="email"
                             value={shop.email || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -64,7 +66,7 @@ const ShopDetails = () => {
                             name="status"
                             value={shop.status || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -75,7 +77,7 @@ const ShopDetails = () => {
                             name="shopId"
                             value={shop.shopId || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -98,7 +100,7 @@ const ShopDetails = () => {
                             name="street"
                             value={shop.address?.street || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -109,7 +111,7 @@ const ShopDetails = () => {
                             name="city"
                             value={shop.address?.city || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -120,7 +122,7 @@ const ShopDetails = () => {
                             name="state"
                             value={shop.address?.state || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -131,7 +133,7 @@ const ShopDetails = () => {
                             name="zip"
                             value={shop.address?.zip || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -142,7 +144,7 @@ const ShopDetails = () => {
                             name="country"
                             value={shop.address?.country || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="input"
                             disabled={!isEditing}
                         />
                     </div>
@@ -159,6 +161,8 @@ const ShopDetails = () => {
                                 <th className="px-4 py-2">Name</th>
                                 <th className="px-4 py-2">Role</th>
                                 <th className="px-4 py-2">Mobile</th>
+                                <th className="px-4 py-2">Email</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -175,11 +179,13 @@ const ShopDetails = () => {
                                     <td className="px-4 py-2 capitalize">{employee.firstName} {employee.lastName}</td>
                                     <td className="px-4 py-2 capitalize">{employee.role}</td>
                                     <td className="px-4 py-2 capitalize">{employee.mobile}</td>
+                                    <td className="px-4 py-2 capitalize">{employee.mail}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+            </div>
             </div>
         </div>
     );

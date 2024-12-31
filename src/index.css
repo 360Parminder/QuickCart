@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+input:focus{
+    border: 2px solid #7b2bff;
+ }
+ input:is(:-webkit-autofill, :autofill) {
+    background-color: #1f1f1f;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0 1000px #1f1f1f inset;
+  }

@@ -38,7 +38,8 @@ const Profile = () => {
 
     return (
         <div className="flex h-full w-full flex-col overflow-y-scroll text-white">
-            <div className="w-full flex justify-start my-3 ms-10">
+            <div className='p-10 bg-[#1c1917] rounded-2xl shadow-xl'>
+            <div className="w-full flex justify-start mb-2 ms-10">
                 <img
                     src={user.image}
                     alt="User Avatar"
@@ -55,7 +56,7 @@ const Profile = () => {
                             name="firstName"
                             value={user.firstName || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled={!isEditing}
                         />
                     </div>
@@ -66,7 +67,7 @@ const Profile = () => {
                             name="lastName"
                             value={user.lastName || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled={!isEditing}
                         />
                     </div>
@@ -77,7 +78,7 @@ const Profile = () => {
                             name="mobile"
                             value={user.mobile || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled={!isEditing}
                         />
                     </div>
@@ -88,7 +89,7 @@ const Profile = () => {
                             name="timezone"
                             value={getTimeZone() || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled={!isEditing}
                         />
                     </div>
@@ -110,7 +111,7 @@ const Profile = () => {
                             type="text"
                             name="_id"
                             value={user.employeeId || ''}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize  bg-[#1c1917]"
                             disabled
                         />
                     </div>
@@ -121,7 +122,7 @@ const Profile = () => {
                             name="role"
                             value={user.role || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled={!isEditing}
                         />
                     </div>
@@ -132,7 +133,7 @@ const Profile = () => {
                             name="shopId"
                             value={user.shopId || ''}
                             onChange={handleChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled={!isEditing}
                         />
                     </div>
@@ -142,11 +143,12 @@ const Profile = () => {
                             type="text"
                             name="createdAt"
                             value={new Date(user.createdAt).toLocaleString()}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded capitalize bg-[#1c1917]"
                             disabled
                         />
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );
