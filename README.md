@@ -42,7 +42,7 @@ The mind map provides an overview of the app's features and how they are categor
 
 The flow chart outlines the application's structure and how different features are interconnected:
 
-![Flow Chart](https://github.com/yourusername/paperless-billing-system/blob/main/path_to_flow_chart_image)
+![Flow Chart](https://github.com/user-attachments/assets/dda7b19c-16f4-4fa8-bd4d-99195c4bb84e)
 
 - **Home Dashboard:** Central hub for accessing all app features.
 - **Shop Management:** Manage shop profiles and details.
