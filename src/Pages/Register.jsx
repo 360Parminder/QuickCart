@@ -215,6 +215,12 @@ const Register = () => {
                         {isLoading ? "Registering..." : "Register Shop"}
                     </button>
                     <p className="mt-4">Already have a registered shop?</p>
+                    <button
+                        className="bg-[#6b16eb] w-4/6 py-2 rounded-md font-semibold"
+                        onClick={() => navigate("/")}
+                    >
+                        Login
+                    </button>
                 </div>
             </form>
         </div>
