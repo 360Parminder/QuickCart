@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Product } from '../Services/Product';
+import '../Styles/Global.css';
 
 const AddDeleteProducts = () => {
     const [product, setProduct] = useState({
@@ -63,50 +64,54 @@ const AddDeleteProducts = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <div className="w-full md:w-5/6 h-[90%] bg-[#1c1917] rounded-md p-10 overflow-y-scroll overflow-hidden scrollbar text-[#fff]">
             <h2 className="text-2xl font-bold mb-6">Add Product</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Name:</label>
+                    <label className="label">Name:</label>
                     <input
                         type="text"
                         name="name"
                         value={product.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-lg"
+                        className="input"
+                        placeholder='Enter product name'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Price:</label>
+                    <label className="label">Price:</label>
                     <input
                         type="number"
                         name="price"
                         value={product.price}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-lg"
+                        className="input"
+                        placeholder='Enter product price'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Quantity:</label>
+                    <label className="label">Quantity:</label>
                     <input
                         type="number"
                         name="quantity"
                         value={product.quantity}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-lg"
+                        className="input"
+                        placeholder='Enter product quantity'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Unit:</label>
+                    <label className="label">Unit:</label>
                     <select
                         name="unit"
                         value={product.unit}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-lg"
+                        className="input"
+                        placeholder='Select unit'
                     >
                         <option value="" disabled>Select unit</option>
                         <option value="kg">Kilogram (kg)</option>
@@ -117,24 +122,26 @@ const AddDeleteProducts = () => {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Quantity in Stock:</label>
+                    <label className="label">Quantity in Stock:</label>
                     <input
                         type="number"
                         name="quantityInStock"
                         value={product.quantityInStock}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-lg"
+                        className="input"
+                        placeholder='Enter quantity in stock'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Image:</label>
+                    <label className="label">Image:</label>
                     <input
                         type="file"
                         name="image"
                         onChange={handleFileChange}
                         required
-                        className="w-full px-3 py-2 border rounded-lg"
+                        className="input"
+                        placeholder='Select product image'
                     />
                 </div>
                 {previewImage && (
@@ -148,7 +155,7 @@ const AddDeleteProducts = () => {
                 )}
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+                    className="w-full primary-button"
                 >
                     Add Product
                 </button>

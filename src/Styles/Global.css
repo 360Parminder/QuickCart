@@ -33,6 +33,32 @@
     outline: none;
     text-transform: capitalize;
  }
+ .input::placeholder{
+    color: #ffffff;
+ }
  .input:active{
     border: 2px solid #7b2bff;
  }
+ 
+ .scrollbar{
+    scrollbar-width: thin;
+    scrollbar-color: #7b2bff #1f1f1f;
+ }
+ .primary-button{
+    background-color: #7b2bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    outline: none;
+    text-transform: capitalize;
+ }
+   .primary-button:hover{
+      background-color: #6b16eb;
+      color: #ffffff;
+   }

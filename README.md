@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Paperless Billing System
 
-## Available Scripts
+Welcome to the Paperless Billing System repository! This application is designed to provide an eco-friendly solution to generate bills and send them to customers via email and SMS, helping reduce paper waste. The app also offers features for shop management, including product and inventory management, employee registration, and sales analysis.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Paperless Billing
+- **Generate and send bills directly to customers via email and SMS.**
+- **Contribute to reducing paper waste.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Shop Management
+- **Register and manage shop profiles.**
+- **Support for multiple shops if needed.**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Product Management
+- **Add, edit, and delete products.**
+- **Track product details such as price, quantity, and categories.**
 
-### `npm test`
+### Employee Management
+- **Register employees with roles and permissions.**
+- **Control employee access to various features.**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Inventory Management
+- **Monitor stock levels for all products.**
+- **Receive alerts for low stock to ensure timely restocking.**
 
-### `npm run build`
+### Sales Analysis
+- **Track daily, weekly, and monthly sales.**
+- **Analyze sales trends with visual charts and reports.**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Mind Map
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The mind map provides an overview of the app's features and how they are categorized:
 
-### `npm run eject`
+![Mind Map](https://github.com/yourusername/paperless-billing-system/blob/main/path_to_mind_map_image)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Flow Chart
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The flow chart outlines the application's structure and how different features are interconnected:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Flow Chart](https://github.com/yourusername/paperless-billing-system/blob/main/path_to_flow_chart_image)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Home Dashboard:** Central hub for accessing all app features.
+- **Shop Management:** Manage shop profiles and details.
+- **Product Management:** Manage products, prices, and quantities.
+- **Employee Management:** Manage employee registration and roles.
+- **Inventory Management:** Monitor and restock inventory levels.
+- **Billing System:** Generate and send bills via email and SMS.
+- **Sales Analysis:** Track sales data and generate reports.
 
-## Learn More
+## Development Status
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Working
+- Billing System
+- Product Management
+- Inventory Monitoring
+- Sales Analysis
+- Employee Registration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Need Watch
+- Stock Alerts
+- Multi-shop Management
 
-### Code Splitting
+### Not Working
+- Advanced Sales Trend Reports
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Not Decided Yet
+- Integration with Payment Gateways
 
-### Analyzing the Bundle Size
+## Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/360Parminder/QuickCart.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd QuickCart
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+4. Start the application:
+    ```sh
+    npm start
+    ```
 
-### Making a Progressive Web App
+## Contribution
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Contributions are welcome! Please fork the repository and submit pull requests for any enhancements or bug fixes. Make sure to follow the code of conduct and guidelines for contributing.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

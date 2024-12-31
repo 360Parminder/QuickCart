@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../Styles/Global.css";
 import { useNavigate } from "react-router-dom";
 import { User } from "../Services/User";
+import { IoNavigate } from "react-icons/io5";
+import "../Styles/Global.css";
 
 const InputField = ({ label, name, type, placeholder, value, onChange, disabled = false, helperText }) => (
     <div className="form-group">
@@ -81,7 +83,7 @@ const Register = () => {
     return (
         <div className="w-screen h-screen bg-[#000] flex justify-center items-center text-[#fff]">
             <form
-                className="w-full md:w-5/6 h-full  bg-[#1c1917] grid grid-cols-1 md:grid-cols-3 gap-4 md:justify-center md:items-center rounded-lg p-1 md:p-10"
+                className="scrollbar w-full md:w-5/6 h-[90%]  bg-[#1c1917] grid grid-cols-1 md:grid-cols-3 gap-4 md:justify-center md:items-center rounded-lg p-1 md:p-10 overflow-y-scroll overflow-hidden"
                 onSubmit={handleSubmit}
             >
                 <InputField
@@ -214,13 +216,11 @@ const Register = () => {
                     >
                         {isLoading ? "Registering..." : "Register Shop"}
                     </button>
+                    <div className="flex flex-col justify-center items-center text-white mt-5 gap-2">
                     <p className="mt-4">Already have a registered shop?</p>
-                    <button
-                        className="bg-[#6b16eb] w-4/6 py-2 rounded-md font-semibold"
-                        onClick={() => navigate("/")}
-                    >
-                        Login
-                    </button>
+
+                   <button className=" text-white bg-[#7B2BFF] p-2 rounded-md flex items-center gap-1" onClick={()=>navigate('/')}>Login <IoNavigate size={16}/></button>
+                    </div>
                 </div>
             </form>
         </div>

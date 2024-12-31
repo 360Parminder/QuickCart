@@ -89,7 +89,7 @@ const Dashboard = () => {
             </nav>
 
             {/* Content Section */}
-            <div className="w-full flex-1 p-6">
+            <div className="w-full flex p-6 justify-center items-center">
                 <Outlet />
             </div>
         </div>

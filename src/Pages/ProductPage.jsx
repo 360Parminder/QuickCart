@@ -98,7 +98,7 @@ const ProductPage = () => {
           <p className="text-lg">Please add products to the store.</p>
           <button
             onClick={() => navigate("add-delete-products")}
-            className="mt-4 rounded-md px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition duration-300"
+            className="primary-button"
           >
             Go to Add Product
           </button>

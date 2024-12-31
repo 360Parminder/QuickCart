@@ -1,9 +1,18 @@
 body {
         background-color: black;
+        overflow: hidden;
+        overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  scrollbar-width: none; /* Firefox */
         /* color: white; */
 }
 
 body::-webkit-scrollbar {
         display: none;
         /* Hide scrollbar */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
