@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Auth } from "../Context/UserAuth";
 import logo from '../Assets/Images/logo.png';
 import {IoNavigate} from "react-icons/io5"
+import Loader from "../Components/Loader";
 const Landing = () => {
     const navigate = useNavigate();
     const { login,isLoading } = useContext(Auth);
@@ -38,7 +39,7 @@ const Landing = () => {
                 {
                     isLoading ? (
                         <div className="bg-[#7B2BFF] w-[60%] py-2 rounded-md font-semibold flex justify-center items-center mt-5">
-                            <p className="text-white">Loading...</p>
+                            <Loader />
                         </div>
                     ) : (
                         <button className="bg-[#7B2BFF] w-[60%] py-2 rounded-md font-semibold text-white mt-5 " type="submit" >Login</button>

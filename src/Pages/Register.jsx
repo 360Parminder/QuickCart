@@ -69,7 +69,7 @@ const Register = () => {
             setIsLoading(false);
             if (response.success) {
                 alert("Shop Registered Successfully");
-                navigate("/success");
+                navigate("/");
             } else {
                 alert(response.message);
             }

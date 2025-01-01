@@ -32,7 +32,7 @@ const ShopDetails = () => {
     };
 
     return (
-        <div className="flex h-full w-full flex-col overflow-y-scroll text-white">
+        <div className="flex h-full w-full flex-col overflow-y-scroll text-white scrollbar">
             <div className='p-10 bg-[#1c1917] rounded-2xl shadow-xl'>
             <div className="bg-[#2c076e] border border-[#5a12c5] p-8 rounded-lg shadow-lg mb-10">
                 <p className="text-lg font-semibold w-full my-5">Shop Details</p>
@@ -179,7 +179,7 @@ const ShopDetails = () => {
                                     <td className="px-4 py-2 capitalize">{employee.firstName} {employee.lastName}</td>
                                     <td className="px-4 py-2 capitalize">{employee.role}</td>
                                     <td className="px-4 py-2 capitalize">{employee.mobile}</td>
-                                    <td className="px-4 py-2 capitalize">{employee.mail}</td>
+                                    <td className="px-4 py-2 capitalize">{employee.email}</td>
                                 </tr>
                             ))}
                         </tbody>

@@ -48,7 +48,7 @@ const Dashboard = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="update" className="flex items-center space-x-4 hover:text-gray-300 px-4">
+                        <Link to="updateProducts" className="flex items-center space-x-4 hover:text-gray-300 px-4">
                             <IoConstructOutline size={24} />
                             {!isNavCollapsed && <span>Update</span>}
                         </Link>

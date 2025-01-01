@@ -10,6 +10,7 @@ import ProductPage from "../Pages/ProductPage";
 import Razorpay from "../Pages/RazorPay";
 import Profile from "../Pages/Profile";
 import ShopDetails from "../Pages/ShopDetails";
+import UpdateProducts from "../Pages/UpdateProducts";
 
 const AppRoutes = () => {
     return (
@@ -28,11 +29,16 @@ const AppRoutes = () => {
              <RegisterEmployee />
           </ProtectedRoute>
           } /> 
+          <Route path="updateProducts" element={
+          <ProtectedRoute allowedRoles={["ShopOwner"]}>
+            <UpdateProducts />
+          </ProtectedRoute>
+          } />
+
          <Route path="profile" element={<Profile />} />
          <Route path="shopDetails" element={<ShopDetails/>} />
       {/*  <Route index element={<Home />} />
         <Route path="/sales" element={<Sales />} />
-        <Route path="/update" element={<Update />} />
         <Route path="/generate-bill" element={<GenerateBill />} />*/}
           <Route path="*" element={<h1>Not Found</h1>} />
       </Route>

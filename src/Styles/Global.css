@@ -43,6 +43,7 @@
  .scrollbar{
     scrollbar-width: thin;
     scrollbar-color: #7b2bff #1f1f1f;
+    scroll-behavior: smooth;
  }
  .primary-button{
     background-color: #7b2bff;

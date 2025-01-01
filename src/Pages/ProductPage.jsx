@@ -3,6 +3,7 @@ import { Product } from "../Services/Product";
 import { useNavigate } from "react-router-dom";
 import { generateReceiptId } from "../Utils/generateReceiptId";
 import { handlePayment } from "../Utils/razorpay";
+import "../Styles/Global.css";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -60,11 +61,11 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = (product) => {
-    const existingProduct = cart.find((item) => item.name === product.name);
+    const existingProduct = cart.find((item) => item._id === product._id);
     let updatedCart;
     if (existingProduct) {
       updatedCart = cart.map((item) =>
-        item.name === product.name ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
       );
     } else {
       updatedCart = [...cart, { ...product, quantity: 1 }];
@@ -75,7 +76,7 @@ const ProductPage = () => {
   const handleRemoveFromCart = (product) => {
     const updatedCart = cart
       .map((item) =>
-        item.name === product.name ? { ...item, quantity: item.quantity - 1 } : item
+        item._id === product._id ? { ...item, quantity: item.quantity - 1 } : item
       )
       .filter((item) => item.quantity > 0);
     updateCart(updatedCart);
@@ -91,7 +92,7 @@ const ProductPage = () => {
     new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(price);
 
   return (
-    <div className="bg-black text-white h-full flex flex-row justify-between gap-4">
+    <div className="bg-black text-white h-full  w-full flex flex-row justify-between gap-4">
       {/* Products Section */}
       {products.length === 0 ? (
         <div className="flex flex-col items-center justify-center w-full h-full">
@@ -104,7 +105,7 @@ const ProductPage = () => {
           </button>
         </div>
       ) : (
-        <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" : "grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-scroll scrollbar-hidden`}>
+        <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" : "grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-y-scroll scrollbar`}>
           {products.map((product, index) => (
             <div
               key={index}
@@ -114,7 +115,7 @@ const ProductPage = () => {
               <img
                 src={product.image}
                 alt={`Image of ${product.name}`}
-                className="rounded-md w-32 h-32 object-cover mb-4"
+                className="rounded-md w-[6rem] h-[6rem] object-cover"
               />
               <div>
                 <p>Product Name</p>

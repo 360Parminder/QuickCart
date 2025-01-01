@@ -42,7 +42,7 @@ The mind map provides an overview of the app's features and how they are categor
 
 The flow chart outlines the application's structure and how different features are interconnected:
 
-![Flow Chart](https://github.com/user-attachments/assets/dda7b19c-16f4-4fa8-bd4d-99195c4bb84e)
+![Flow Chart](https://github.com/user-attachments/assets/94c1757a-4ea1-418f-83ef-0e80d296a6ec)
 
 - **Home Dashboard:** Central hub for accessing all app features.
 - **Shop Management:** Manage shop profiles and details.
