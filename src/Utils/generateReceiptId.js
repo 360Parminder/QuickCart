@@ -21,7 +21,7 @@ export const makeOrderID = async (amount,receiptId) => {
       {
         auth: {
           username: process.env.REACT_APP_RAZORPAY_KEY, // Replace with your Razorpay Test Key
-          password: process.env.REACT_APP_RAZOROAY_SECRET, // Replace with your Razorpay Test Secret
+          password: process.env.REACT_APP_RAZORPAY_SECRET, // Replace with your Razorpay Test Secret
         },
         headers: {
           'Content-Type': 'application/json',
@@ -30,6 +30,8 @@ export const makeOrderID = async (amount,receiptId) => {
     );
 
     // Return the receipt ID and the order ID returned by the Razorpay API
+    console.log('Order created:', response.data);
+    
     return {orderId: response.data.id };
   } catch (error) {
     console.error('Error creating order:', error.response ? error.response.data : error.message);

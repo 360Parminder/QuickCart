@@ -58,8 +58,8 @@ The flow chart outlines the application's structure and how different features a
 - Billing System
 - Product Management
 - Inventory Monitoring
-- Sales Analysis
 - Employee Registration
+- Integration with Payment Gateways
 
 ### Need Watch
 - Stock Alerts
@@ -69,7 +69,7 @@ The flow chart outlines the application's structure and how different features a
 - Advanced Sales Trend Reports
 
 ### Not Decided Yet
-- Integration with Payment Gateways
+- Sales Analysis
 
 ## Installation
 

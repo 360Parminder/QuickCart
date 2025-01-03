@@ -11,6 +11,7 @@ import Razorpay from "../Pages/RazorPay";
 import Profile from "../Pages/Profile";
 import ShopDetails from "../Pages/ShopDetails";
 import UpdateProducts from "../Pages/UpdateProducts";
+import GenerateBill from "../Pages/GenerateBill";
 
 const AppRoutes = () => {
     return (
@@ -34,6 +35,7 @@ const AppRoutes = () => {
             <UpdateProducts />
           </ProtectedRoute>
           } />
+          <Route path="generateBill" element={<GenerateBill/>} />
 
          <Route path="profile" element={<Profile />} />
          <Route path="shopDetails" element={<ShopDetails/>} />

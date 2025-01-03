@@ -22,16 +22,9 @@ const ProductPage = () => {
       }
     };
     fetchProducts();
-
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
   }, []);
+  
+  
 
   // Load cart and orderId from localStorage
   useEffect(() => {
@@ -206,7 +199,7 @@ const ProductPage = () => {
               >
                 Cancel
               </button>
-              <button onClick={() => handlePayment(100,orderId,8779112732,"parminder")} className="rounded-md px-4 py-2 bg-green-500 text-white hover:bg-green-600 transition duration-300">
+              <button onClick={() =>navigate('generateBill')} className="rounded-md px-4 py-2 bg-green-500 text-white hover:bg-green-600 transition duration-300">
                 Pay
               </button>
             </div>
