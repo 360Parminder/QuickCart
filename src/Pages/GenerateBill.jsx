@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/Global.css';
 import { handlePayment } from '../Utils/razorpay';
+import { useNavigate } from 'react-router-dom';
+import { Payments } from '../Services/Payments';
 
 const GenerateBill = () => {
+    const navigate = useNavigate();
     const [cart, setCart] = useState([]);
     const [customer, setCustomer] = useState({
         name: '',
@@ -10,7 +13,7 @@ const GenerateBill = () => {
         email: '',
     });
     const [orderId, setOrderId] = useState(null);
-    const [paymentMode, setPaymentMode] = useState('Cash');
+    const [paymentMode, setPaymentMode] = useState('cash');
     const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
@@ -18,15 +21,6 @@ const GenerateBill = () => {
         setCart(cartData);
         const savedOrderId = localStorage.getItem('orderId');
         setOrderId(savedOrderId);
-
-        const script = document.createElement('script');
-        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        };
     }, []);
 
     const handleInputChange = (e) => {
@@ -65,22 +59,33 @@ const GenerateBill = () => {
             return;
         }
 
-        if (paymentMode === 'Cash') {
-            alert('Payment successful');
-            localStorage.removeItem('cart');
-            setCart([]);
-        } else if (paymentMode === 'Online') {
+        if (paymentMode === 'cash') {
+            const response = await Payments.generateBill(cart, orderId, customer, totalAmount, paymentMode, 'Paid');
+            if (response.success) {
+                alert('Payment successful');
+                localStorage.removeItem('cart');
+                setCart([]);
+                navigate('/Dashboard');
+            }
+                else {
+                    alert('Payment failed. Please try again.');
+                }
+        
+        } else if (paymentMode === 'online') {
             try {
                 const response = await handlePayment(totalAmount, orderId, customer.name, customer.mobile, customer.email);
-                console.log('Payment response:', response);
                 if (response.success) {
                     alert('Payment successful');
                     localStorage.removeItem('cart');
                     setCart([]);
+
+                    navigate('/Dashboard');
+                    setIsProcessing(false);
                 } else {
                     alert('Payment failed. Please try again.');
                 }
             } catch (error) {
+                setIsProcessing(false);
                 console.error('Payment error:', error);
                 alert('Something went wrong during the payment process.');
             }
@@ -92,6 +97,7 @@ const GenerateBill = () => {
         console.log('Payment cancelled');
         setCart([]);
         localStorage.removeItem('cart');
+        navigate('/Dashboard');
     };
 
     return (
@@ -181,8 +187,8 @@ const GenerateBill = () => {
                             onChange={handlePaymentModeChange}
                             className="input"
                         >
-                            <option value="Cash">Cash</option>
-                            <option value="Online">Online</option>
+                            <option value="cash">Cash</option>
+                            <option value="online">Online</option>
                         </select>
                     </label>
                 </div>

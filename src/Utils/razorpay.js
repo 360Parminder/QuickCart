@@ -1,8 +1,8 @@
-import { makeOrderID } from "./generateReceiptId";
+import { Payments } from "../Services/Payments";
 
 export const handlePayment = async (amount, receiptId, mobile, username, email = "default@example.com") => {
-  const { orderId } = await makeOrderID(amount, receiptId);
-  console.log("Order ID:", orderId);
+
+ const orderId =await Payments.getOrderId(amount, receiptId);
   try {
     // Generate order ID from the backend
     
@@ -15,7 +15,7 @@ export const handlePayment = async (amount, receiptId, mobile, username, email =
         name: "Quick Cart",
         description: "Test Transaction",
         image: "https://example.com/your_logo",
-        order_id: orderId, // Order ID from backend
+        order_id: orderId.data, // Order ID from backend
         handler: function (response) {
           console.log("Payment successful", response);
           

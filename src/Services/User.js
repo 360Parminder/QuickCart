@@ -67,8 +67,6 @@ export const User = {
                     Authorization: `Bearer ${token}`
                 }
             });
-            console.log(response);
-
             if (response.status === 200 || response.status === 400) {
                 return { success: true, message: response.data.message, data: response.data.user };
             } else {
