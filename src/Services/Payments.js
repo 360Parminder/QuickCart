@@ -44,6 +44,7 @@ export const Payments = {
                   paymentMethod: paymentMode,
                   customerName: customer.name,
                   mobile: customer.mobile,
+                email: customer.email,
                   items:cart,
                   status:status,
                   razorpayOrderId:razorpayOrderId?razorpayOrderId:null,
@@ -66,6 +67,24 @@ export const Payments = {
             }
         } catch (error) {
             console.error("Error generating bill: ", error);
+            return { success: false, message: error.response?.data?.message || "An error occurred. Please try again." };
+        }
+    },
+    getPayments: async () => {
+        const token = Cookies.get("Authtoken");
+        try {
+            const response = await GlobalPath.get(`/api/v1/payment/allPayments`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200 || response.status === 201) {
+                return { success: true, message: response.data.message, data: response.data.payments };
+            } else {
+                return { success: false, message: "An error occurred. Please try again." };
+            }
+        } catch (error) {
+            console.error("Error getting payments: ", error);
             return { success: false, message: error.response?.data?.message || "An error occurred. Please try again." };
         }
     },

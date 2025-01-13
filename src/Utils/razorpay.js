@@ -1,6 +1,6 @@
 import { Payments } from "../Services/Payments";
 
-export const handlePayment = async (amount, receiptId, mobile, username, email = "default@example.com") => {
+export const handlePayment = async (amount, receiptId, mobile, username, email) => {
 
  const orderId =await Payments.getOrderId(amount, receiptId);
   try {

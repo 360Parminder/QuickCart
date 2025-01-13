@@ -12,6 +12,7 @@ import Profile from "../Pages/Profile";
 import ShopDetails from "../Pages/ShopDetails";
 import UpdateProducts from "../Pages/UpdateProducts";
 import GenerateBill from "../Pages/GenerateBill";
+import Sales from "../Pages/Sales";
 
 const AppRoutes = () => {
     return (
@@ -35,12 +36,18 @@ const AppRoutes = () => {
             <UpdateProducts />
           </ProtectedRoute>
           } />
+
+         <Route path="sales" element={
+          <ProtectedRoute allowedRoles={["ShopOwner"]}>
+           <Sales />
+          </ProtectedRoute>
+         } />
+
           <Route path="generateBill" element={<GenerateBill/>} />
 
          <Route path="profile" element={<Profile />} />
          <Route path="shopDetails" element={<ShopDetails/>} />
       {/*  <Route index element={<Home />} />
-        <Route path="/sales" element={<Sales />} />
         <Route path="/generate-bill" element={<GenerateBill />} />*/}
           <Route path="*" element={<h1>Not Found</h1>} />
       </Route>

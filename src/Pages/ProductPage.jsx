@@ -98,12 +98,12 @@ const ProductPage = () => {
           </button>
         </div>
       ) : (
-        <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" : "grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-y-scroll scrollbar`}>
+        <div className={`${cart.length > 0 ? "grid-cols-1 w-4/6" :" md:grid-cols-2 w-full"} grid grid-cols-1 gap-6 h-full overflow-y-scroll scrollbar`}>
           {products.map((product, index) => (
             <div
               key={index}
               onClick={() => handleAddToCart(product)}
-              className="flex flex-row items-center justify-between border border-[#5a12c5] h-28 rounded-lg p-4 bg-[#2c076e] text-center cursor-pointer hover:bg-[#4a11a1]"
+              className="flex flex-col md:flex-row items-center justify-between border border-[#5a12c5] md:max-h-28 rounded-lg p-4 bg-[#2c076e] text-center cursor-pointer hover:bg-[#4a11a1]"
             >
               <img
                 src={product.image}
@@ -111,7 +111,7 @@ const ProductPage = () => {
                 className="rounded-md w-[6rem] h-[6rem] object-cover"
               />
               <div>
-                <p>Product Name</p>
+                <p className=" hidden md:grid">Product Name</p>
                 <h3 className="text-lg font-medium">{product.name}</h3>
               </div>
               <div>

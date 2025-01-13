@@ -118,7 +118,7 @@ const GenerateBill = () => {
                             <tr key={index}>
                                 <td className="border border-gray-700 px-4 py-2">{item.name}</td>
                                 <td className="border border-gray-700 px-4 py-2">{item.quantity}</td>
-                                <td className="border border-gray-700 px-4 py-2">${item.price.toFixed(2)}</td>
+                                <td className="border border-gray-700 px-4 py-2">₹{item.price.toFixed(2)}</td>
                                 <td className="border border-gray-700 px-4 py-2">
                                     ${(item.price * item.quantity).toFixed(2)}
                                 </td>
@@ -131,7 +131,7 @@ const GenerateBill = () => {
                                 Total
                             </td>
                             <td className="border border-gray-700 px-4 py-2 font-bold">
-                                ${totalAmount.toFixed(2)}
+                            ₹{totalAmount.toFixed(2)}
                             </td>
                         </tr>
                     </tfoot>

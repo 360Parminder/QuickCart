@@ -6,7 +6,7 @@ import { IoNavigate } from "react-icons/io5";
 import "../Styles/Global.css";
 
 const InputField = ({ label, name, type, placeholder, value, onChange, disabled = false, helperText }) => (
-    <div className="form-group">
+    <div className="form-group w-full md:w-4/6">
         <label className="label">{label}</label>
         <input
             type={type}
@@ -83,7 +83,7 @@ const Register = () => {
     return (
         <div className="w-screen h-screen bg-[#000] flex justify-center items-center text-[#fff]">
             <form
-                className="scrollbar w-full md:w-5/6 h-[90%]  bg-[#1c1917] grid grid-cols-1 md:grid-cols-3 gap-4 md:justify-center md:items-center rounded-lg p-1 md:p-10 overflow-y-scroll overflow-hidden"
+                className="scrollbar w-full md:w-5/6 md:h-[90%]  bg-[#1c1917] grid grid-cols-1 md:grid-cols-3 gap-4 md:justify-center md:items-center rounded-lg p-1 md:p-10 overflow-y-scroll overflow-hidden"
                 onSubmit={handleSubmit}
             >
                 <InputField
