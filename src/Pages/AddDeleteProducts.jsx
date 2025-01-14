@@ -9,7 +9,8 @@ const AddDeleteProducts = () => {
         quantity: '',
         unit: '', // Unit will be selected from dropdown
         image: null,
-        quantityInStock: ''
+        quantityInStock: '',
+        catagory: '' // Catagory will be selected from dropdown
     });
     const [previewImage, setPreviewImage] = useState(null);
 
@@ -45,6 +46,7 @@ const AddDeleteProducts = () => {
         formData.append('unit', product.unit);
         formData.append('quantityInStock', product.quantityInStock);
         formData.append('image', product.image);
+        formData.append('catagory', product.catagory);
 
         const response = await Product.addProduct(formData);
         if (response.success) {
@@ -56,7 +58,8 @@ const AddDeleteProducts = () => {
                 quantity: '',
                 unit: '',
                 image: null,
-                quantityInStock: ''
+                quantityInStock: '',
+                catagory: ''
             });
             setPreviewImage(null);
         }
@@ -79,6 +82,22 @@ const AddDeleteProducts = () => {
                         placeholder='Enter product name'
                     />
                 </div>
+                <div className="mb-4">
+                    <label className="label">Product Catagory:</label>
+                    <select name="catagory" value={product.catagory} onChange={handleChange} required className="input" placeholder='Select catagory'>
+                        <option value="" disabled>Select catagory</option>
+                        <option value="Grocery">Grocery</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Beauty">Beauty</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Books">Books</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Toys">Toys</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
                 <div className="mb-4">
                     <label className="label">Price:</label>
                     <input
