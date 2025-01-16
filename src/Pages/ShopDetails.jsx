@@ -186,6 +186,13 @@ const ShopDetails = () => {
                     </table>
                 </div>
             </div>
+                <div className="flex justify-between mt-10 capitalize">
+                    <a href="https://www.freeprivacypolicy.com/live/80ea0737-3b65-4e26-a9e0-287ce8a4dfe6">privacy policy</a>
+                    <a href="https://www.termsfeed.com/live/a57a4ddd-8769-4036-992b-b435a5256890">Terms and Conditions</a>
+                    <a href="https://www.privacypolicies.com/live/e2b4bb65-943e-45c3-b629-c8eeafe6f0ec">Return & Refund Policy</a>
+                    <a href="https://app.websitepolicies.com/policies/view/pujrtfzw">Shipping and Delivery</a>
+
+                </div>
             </div>
         </div>
     );
