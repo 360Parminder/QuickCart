@@ -13,6 +13,7 @@ import ShopDetails from "../Pages/ShopDetails";
 import UpdateProducts from "../Pages/UpdateProducts";
 import GenerateBill from "../Pages/GenerateBill";
 import Sales from "../Pages/Sales";
+import Policy from "../Pages/Policy";
 
 const AppRoutes = () => {
     return (
@@ -47,6 +48,7 @@ const AppRoutes = () => {
 
          <Route path="profile" element={<Profile />} />
          <Route path="shopDetails" element={<ShopDetails/>} />
+         <Route path="policy" element={<Policy/>} />
       {/*  <Route index element={<Home />} />
         <Route path="/generate-bill" element={<GenerateBill />} />*/}
           <Route path="*" element={<h1>Not Found</h1>} />

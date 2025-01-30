@@ -65,6 +65,12 @@ const Dashboard = () => {
                             {!isNavCollapsed && <span>Shop Details</span>}
                         </Link>
                     </li>
+                    <li>
+                        <Link to="policy" className="flex items-center space-x-4 hover:text-gray-300 px-4">
+                            <IoConstructOutline size={24} />
+                            {!isNavCollapsed && <span>Policy</span>}
+                        </Link>
+                    </li>
                 </ul>
                 {/* Logout Button */}
                 <div className="flex flex-col items-center mt-auto mb-4 whitespace-nowrap">
