@@ -107,7 +107,7 @@ const ReturnRefundPolicy = () => (
     </p>
     <ul className="list-disc pl-6">
       <li>Items must be returned in their original condition.</li>
-      <li>Refunds will be processed within 5-7 business days.</li>
+      <li>Refunds will be credit to original payment method in  within 5-7 business days.</li>
       <li>Shipping costs are non-refundable.</li>
     </ul>
   </div>
