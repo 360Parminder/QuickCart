@@ -120,7 +120,7 @@ const GenerateBill = () => {
                                 <td className="border border-gray-700 px-4 py-2">{item.quantity}</td>
                                 <td className="border border-gray-700 px-4 py-2">₹{item.price.toFixed(2)}</td>
                                 <td className="border border-gray-700 px-4 py-2">
-                                    ${(item.price * item.quantity).toFixed(2)}
+                                    ₹{(item.price * item.quantity).toFixed(2)}
                                 </td>
                             </tr>
                         ))}
@@ -178,7 +178,7 @@ const GenerateBill = () => {
                         />
                     </label>
                 </div>
-                <h2 className="text-xl font-bold mb-4">Total: ${totalAmount.toFixed(2)}</h2>
+                <h2 className="text-xl font-bold mb-4">Total: ₹{totalAmount.toFixed(2)}</h2>
                 <div className="mb-4">
                     <label className="block mb-2">
                         Payment Mode:
@@ -194,7 +194,7 @@ const GenerateBill = () => {
                 </div>
                 <div className="flex space-x-4">
                     <button
-                        onClick={handlePay}
+                        onClick={()=>{alert('Comming soon')}}
                         disabled={isProcessing}
                         className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 ${isProcessing && 'opacity-50 cursor-not-allowed'}`}
                     >
