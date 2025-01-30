@@ -203,6 +203,9 @@ const TermsAndConditions = () => (
       <li>
         All disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts in <strong>Alwar, Rajasthan</strong>.
       </li>
+      <li>
+        This Website will be handled By <strong>Parminder Singh</strong>.
+      </li>
     </ul>
     <p className="mb-4">
       All concerns or communications relating to these Terms must be communicated to us using the contact information provided on the Platform.
