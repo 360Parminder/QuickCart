@@ -123,10 +123,15 @@ const PrivacyPolicy = () => (
     <p className="mb-4">
       We may update this Privacy Policy periodically. Significant changes will be communicated as required by law.
     </p>
+    <h3 className="text-xl font-semibold mt-4">8. Contact Us</h3>
+    <p className="mb-2">
+     Email: yesask8@gmail.com
+    </p>
+    <p className="mb-4">
+     Contact: +91 8779112732
+    </p>
   </div>
 );
-
-
 // Terms and Conditions Component
 const TermsAndConditions = () => (
   <div className="w-full h-full p-2 overflow-y-auto">
@@ -204,7 +209,6 @@ const TermsAndConditions = () => (
     </p>
   </div>
 );
-
 // Return and Refund Policy Component
 const ReturnRefundPolicy = () => (
   <div>
@@ -219,7 +223,6 @@ const ReturnRefundPolicy = () => (
     </ul>
   </div>
 );
-
 // Shipping and Delivery Policy Component
 const ShippingDeliveryPolicy = () => (
   <div>
