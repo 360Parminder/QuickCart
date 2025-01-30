@@ -73,7 +73,7 @@ const PrivacyPolicy = () => (
   <div>
     <h2 className="text-2xl font-semibold mb-4">Privacy Policy</h2>
     <p className="mb-4">
-      This Privacy Policy explains how [Company Name] ("we", "our", "us") collects, uses, shares, protects, and processes your personal data through our website [Website Link] ("Platform"). By using this Platform, you agree to the terms of this Privacy Policy and the applicable laws of India. If you do not agree, please do not use our Platform.
+      This Privacy Policy explains how Quick Cart ("we", "our", "us") collects, uses, shares, protects, and processes your personal data through our website [Website Link] ("Platform"). By using this Platform, you agree to the terms of this Privacy Policy and the applicable laws of India. If you do not agree, please do not use our Platform.
     </p>
 
     <h3 className="text-xl font-semibold mt-4">1. Information We Collect</h3>
